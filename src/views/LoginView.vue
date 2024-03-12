@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import axios from 'axios'; 
+
 export default {
   data() {
     return {
@@ -25,18 +27,27 @@ export default {
     };
   },
   methods: {
-    login() {
-      
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
+    async login() {
+      try {
+        //  POST request to your login API endpoint
+        const response = await axios.post('/api/login', {
+          email: this.email,
+          password: this.password
+        });
 
+   
+        console.log('Login successful');
+        console.log('Response:', response.data); 
+      } catch (error) {
+       
+        console.error('Error logging in:', error);
      
+      }
     },
     forgotPassword() {
-      // Implement  forgot password form
+    
       console.log('Forgot Password');
-      
-      
+     
       this.$router.push('/forgotpassword');
     }
   }
