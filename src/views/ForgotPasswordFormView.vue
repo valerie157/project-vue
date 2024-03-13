@@ -33,19 +33,19 @@ export default {
     async submitForm() {
       try {
         const response = await axios.post('/api/forgot-password', { email: this.email, username: this.username });
-        // Handle success response
+        
         if (response.data.success) {
-          this.successMessage = response.data.message; // Assuming your API returns a success message
-          this.errorMessage = ''; // Clear any previous error message
+          this.successMessage = response.data.message; 
+          this.errorMessage = ''; 
         } else {
-          // Handle unsuccessful response
-          this.errorMessage = response.data.message; // Assuming your API returns an error message
-          this.successMessage = ''; // Clear any previous success message
+         
+          this.errorMessage = response.data.message; 
+          this.successMessage = ''; 
         }
       } catch (error) {
-        // Handle error response
-        this.errorMessage = 'Error initiating password reset. Please try again later.';
-        console.error('Error initiating password reset:', error);
+     
+        this.errorMessage = 'Error in re-setting password try later.';
+        console.error('Error in re-setting password:', error);
       }
     }
   }

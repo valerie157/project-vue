@@ -2,6 +2,7 @@
   <div class="navbar">
     <h1>Welcome Home</h1>
     <ul class="nav-links">
+      <li><router-link to="/dashboard">Dashboard</router-link></li>
       <li><router-link to="/">Home</router-link></li>
       <li><router-link to="/about">About</router-link></li>
       <li><router-link to="/services">Services</router-link></li>

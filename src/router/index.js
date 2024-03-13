@@ -6,6 +6,7 @@ import ServicesView from '../views/ServicesView.vue'
 import SignupView from '@/views/SignupView.vue'
 import LoginView from '../views/LoginView.vue'
 import ForgotPasswordFormView from '../views/ForgotPasswordFormView.vue'
+import DashboardView from '../views/DashboardView.vue'
 
 
 
@@ -16,6 +17,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
      component: HomeView
+    },
+    {
+      path:'/dashboard',
+      name:'dashboard',
+      component:DashboardView
     },
     {
       path: '/about',
