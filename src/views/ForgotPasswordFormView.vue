@@ -60,7 +60,7 @@ export default {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color:goldenrod
+  background-color:crimson;
 }
 
 .form-group {

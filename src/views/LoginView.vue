@@ -1,103 +1,92 @@
-<template>
-  <div class="login-view">
-    <h1>Login</h1>
-    <form @submit.prevent="login">
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" v-model="email" required />
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password" required />
-      </div>
-      <button type="submit">Login</button>
-    </form>
-    <a href="#" @click.prevent="forgotPassword">Forgot Password?</a>
-  </div>
-</template>
+<script setup>
+import { ref } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router';
+const username = ref('')
+const password = ref('')
 
-<script>
-import axios from 'axios'; 
-
-export default {
-  data() {
-    return {
-      email: '',
-      password: ''
-    };
-  },
-  methods: {
-    async login() {
-      try {
-        //  POST request to your login API endpoint
-        const response = await axios.post('/api/login', {
-          email: this.email,
-          password: this.password
-        });
-
-   
-        console.log('Login successful');
-        console.log('Response:', response.data); 
-      } catch (error) {
-       
-        console.error('Error logging in:', error);
-     
-      }
-    },
-    forgotPassword() {
-    
-      console.log('Forgot Password');
-     
-      this.$router.push('/forgotpassword');
-    }
-  }
+const router = useRouter()
+const login = async () => {
+    console.log(`${username.value}  ${password.value}`);
+    // Save the value
+   axios.post('http://127.0.0.1:8000/api/login',{username:username.value,password:password.value});
+   router.push('/dashboard')
 };
 </script>
 
+<template>
+    <div class="login-container">
+        <div class="login-form">
+            <h1>login Here</h1>
+            <form @submit.prevent="login">
+                <div class="form-group">
+                    <input class="form-input" type="text" placeholder="Enter username" v-model="username">
+                </div>
+                <div class="form-group">
+                    <input class="form-input" type="password" placeholder="Enter password" v-model="password">
+                </div>
+                <div class="form-group">
+                    <button class="form-button" type="submit">Login</button>
+                </div>
+            </form>
+            <p>Don't have an account? <router-link to="/signup">Sign up</router-link></p>
+            <p><router-link to="/forgotpassword">Forgot Password</router-link></p> 
+        </div>
+    </div>
+</template>
+
 <style scoped>
-.login-view {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: darkred;
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color:darkgray;
+}
+
+.login-form {
+    background-color: mediumaquamarine; 
+    width: 300px;
+    padding: 20px; 
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h1 {
+    text-align: center;
+    color: black; 
+    margin-bottom: 20px;
 }
 
 .form-group {
-  margin-bottom: 10px;
+    margin-bottom: 15px; 
 }
 
-label {
-  font-weight: bold;
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
 }
 
-input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.form-input:focus {
+    border-color: #4caf50; 
 }
 
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: coral;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.form-button {
+    background-color: burlywood; 
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
 }
 
-button:hover {
-  background-color: grey;
-}
-
-a {
-  display: block;
-  text-align: center;
-  margin-top: 10px;
-  color: #fff;
-  text-decoration: none;
+.form-button:hover {
+    background-color: #0056b3; 
 }
 </style>

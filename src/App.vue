@@ -23,7 +23,7 @@
 
 <style>
 .navbar {
-  background-color:darkred;
+  background-color:burlywood;
   padding: 12px 14px;
 }
 
