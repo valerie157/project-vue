@@ -8,7 +8,7 @@ const password = ref('')
 const router = useRouter()
 const login = async () => {
     console.log(`${username.value}  ${password.value}`);
-    // Save the value
+    // Save 
    axios.post('http://127.0.0.1:8000/api/login',{username:username.value,password:password.value});
    router.push('/dashboard')
 };

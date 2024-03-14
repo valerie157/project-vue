@@ -2,17 +2,26 @@
 import { ref } from 'vue'
 import axios from 'axios';
 
-const username = ref('john')
+const name = ref('john')
 const email = ref('john@gmail.com')
 const password = ref('john123')
 
 const signup = async () => {
-    console.log(`${username.value} ${email.value} ${password.value}`);
-    // Save the value
-    axios.post('http://127.0.0.1:8000/api/signup',{username:username.value,email:email.value,password:password.value});
-    // copy and paste the url fom your postman and you should be able to get your values  eg: {username, email, password}
+    console.log(`${name.value} ${email.value} ${password.value}`);
+   
+    try {
+        const response = await axios.post('http://127.0.0.1:8000/api/signup', {
+            name: name.value,
+            email: email.value,
+            password: password.value
+        });
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
 }
 </script>
+
 
 <template>
     <div class="signup-container">
@@ -20,7 +29,7 @@ const signup = async () => {
             <h1>Signup Here</h1>
             <form @submit.prevent="signup">
                 <div class="form-group">
-                    <input class="form-input" type="text" placeholder="Enter username" v-model="username">
+                    <input class="form-input" type="text" placeholder="Enter name" v-model="name">
                 </div>
                 <div class="form-group">
                     <input class="form-input" type="email" placeholder="Enter email" v-model="email">
@@ -32,7 +41,7 @@ const signup = async () => {
                     <button class="form-button" type="submit">Signup</button>
                 </div>
             </form>
-            <p>{{ username }}</p>
+            <!-- <p>{{ username }}</p> -->
         </div>
     </div>
 </template>
