@@ -9,8 +9,8 @@
         <input type="email" id="email" v-model="email" required>
       </div>
       <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="username" id="username" v-model="username" required>
+        <label for="name">name:</label>
+        <input type="name" id="name" v-model="name" required>
       </div>
       <button type="submit" class="submit-button">Submit</button>
     </form>

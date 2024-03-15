@@ -10,6 +10,7 @@
       <li><router-link to="/login">Login</router-link></li>
       <li><router-link to="/signup">Signup</router-link></li>
       <li><router-link to="/forgotpassword">Forgot  Password?</router-link></li>
+      <li><router-link to="/resetpassword">Reset  Password?</router-link></li>
     </ul>
     <p class="nav-description">This is the HomePage</p>
   </div>
@@ -40,8 +41,10 @@
   padding: 0;
 }
 
+
 .nav-links li {
-  margin: 0 10px;
+  margin: 0 20px; 
+  padding: 10px;
 }
 
 .nav-links a {
